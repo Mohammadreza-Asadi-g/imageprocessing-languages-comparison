@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.2.0">
+<procedure name="main">
+<interface/>
+<body>
+<l>count_seconds (time_start)</l>
+<l>read_image (image, 'test.jpg')</l>
+<l>rgb1_to_gray (image, image_processed)</l>
+<l>count_seconds (time_end)</l>
+<l>time_elapsed := (time_end - time_start) * 1000</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
