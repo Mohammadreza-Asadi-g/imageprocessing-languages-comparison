@@ -3,11 +3,27 @@
 <procedure name="main">
 <interface/>
 <body>
-<l>count_seconds (time_start)</l>
+<l>count_seconds (time_start1)</l>
 <l>read_image (image, 'test.jpg')</l>
 <l>rgb1_to_gray (image, image_processed)</l>
-<l>count_seconds (time_end)</l>
-<l>time_elapsed := (time_end - time_start) * 1000</l>
+<l>edges_image (image_processed, ImaAmp, ImaDir, 'canny', 1, 'nms', 1, 10)</l>
+<l>threshold (ImaAmp, Region, 10, 255)</l>
+<l>connection (Region, ConnectedRegions)</l>
+<l>select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 300, 99999)</l>
+<l>count_obj (SelectedRegions, Number)</l>
+<l>count_seconds (time_end1)</l>
+<l>dev_clear_window ()</l>
+<l>dev_display (image)</l>
+<l>dev_set_color ('green')</l>
+<l>count_seconds (time_start2)</l>
+<l>for Index := 1 to Number by 1</l>
+<l>    select_obj (SelectedRegions, ObjectSelected, Index)</l>
+<l>    smallest_circle (ObjectSelected, Row, Column, Radius)</l>
+<l>    gen_rectangle2_contour_xld (Rectangle1, Row, Column, 0, Radius, Radius)  </l>
+<l>endfor</l>
+<l>count_seconds (time_end2)</l>
+<l>time_elapsed := ((time_end2 - time_start2) * 1000) + ((time_end1 - time_start1) * 1000)</l>
+<c></c>
 </body>
 <docu id="main">
 <parameters/>
